@@ -1,0 +1,596 @@
+// ========== Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Rouge+Script&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Comfortaa', cursive;
+    box-sizing: border-box;
+    scroll-behavior: smooth; 
+    list-style: none;
+    text-decoration: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all 300ms ease;
+}
+
+// ========== Variables
+$head-font: 'Rouge Script', cursive;
+
+$color-neutral-light: #FFFFFE;
+$color-background: #0D1117;
+$color-surface: #21262D;
+$color-primary: #ED1955;
+$color-secondary: #19EDB1;
+
+html{
+
+    &::-webkit-scrollbar{
+        width: .5vw;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background: $color-neutral-light;
+    }
+    
+    &::-webkit-scrollbar-track{
+        background: $color-background;
+    }
+}
+section{
+    min-height: 100vh;
+    padding: 100px 40px 40px 40px;
+}
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+button, input{
+    background: none;
+    outline: none;
+    border: none;
+}
+
+@mixin words-limit($limit) {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $limit;
+}
+
+@mixin icon-requirements ($content) {
+    content: $content;
+    display: flex;
+    font-family: "Font Awesome 6 Free";
+    font-weight: 700;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+@keyframes zoom_bounce {
+    0%{
+        opacity: 0;
+        scale: (0);
+    }
+    50%{
+        opacity: 1;
+        scale: (1.1);
+    }
+    100%{
+        opacity: 1;
+        scale: (1);
+    }
+}
+
+// ========== Login Page
+.login-page{
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $color-background;
+
+    .login-container{
+        position: relative;
+        width: 400px;
+        height: 500px;
+        border-radius: 40px;
+        overflow: hidden;
+        z-index: 1;
+
+        .login-box, .signup-box{
+            position: absolute;
+            inset: 0;
+            width: 400px;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-direction: column;
+            padding: 50px 0 20px 0;
+            border-radius: inherit;
+            gap: 40px;
+            transition: all 500ms ease;
+
+            .head-title{
+                font-size: 30px;
+                font-weight: 700;
+                text-transform: capitalize;
+                color: $color-neutral-light;
+            }
+
+            form{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                .input-box, .submit{
+                    width: 100%;
+                    height: 50px;
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                    padding: 20px;
+                    background: $color-background;
+                    border-radius: 25px;
+
+                    i{
+                        font-size: 26px;
+                        color: $color-surface;
+                    }
+
+                    input{
+                        width: 250px;
+                        background: none;
+                        color: $color-neutral-light;
+                    }
+                }
+
+                .submit{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 18px;
+                    font-weight: 700;
+                    text-transform: capitalize;
+                    color: $color-neutral-light;
+                    border: 1px solid rgba(255, 255, 255, 0.25);
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+                    border-right: 1px solid rgba(255, 255, 255, 0.15);
+                    cursor: pointer;
+                }
+
+                .fp-password{
+                    text-align: center;
+                    font-size: 14px;
+                    color: $color-neutral-light;
+                    opacity: .6;
+    
+                    &:hover{
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        .login-box{
+            z-index: 2;
+            background: $color-surface;
+        }
+
+        .signup-box{
+            background: $color-background;
+            z-index: 3;
+            translate: 0 420px;
+            // translate: 0 500px;
+            scale: (.8);
+        }
+
+        &.signup-form_active{
+
+            .signup-box{
+                background: $color-surface;
+                translate: 0 0;
+                scale: (1);
+            }
+        }
+
+        .account-confirmation{
+            display: flex;
+            gap: 5px;
+
+            h5, button{
+                font-size: 16px;
+                color: $color-neutral-light;
+            }
+
+            button{
+                opacity: .7;
+
+                &:hover{
+                    color: $color-secondary;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+// ========== Header
+header{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 80px;
+    padding: 0px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(20px);
+    z-index: 100;
+
+    .head-title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: $color-background;
+        width: 200px;
+
+        i{
+            font-size: 40px;
+        }
+
+        h1{
+            font-size: 32px;
+            font-family: $head-font;
+            text-transform: capitalize;
+        }
+    }
+
+    nav{
+
+        ul{
+            display: flex;
+            align-items: center;
+            gap: 30px;
+
+            li{
+
+                a{
+                    font-size: 20px;
+                    font-weight: 800;
+                    text-transform: capitalize;
+                    color: $color-background;
+                }
+            }
+        }
+    }
+
+    .feature{
+
+        ul{
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 200px;
+
+            li{
+                font-size: 24px;
+                color: $color-background;
+            }
+        }
+    }
+
+    &.sticky{
+
+        .head-title{
+            color: $color-neutral-light;
+        }
+
+        nav{
+
+            ul{
+
+                li{
+
+                    a{
+                        color: $color-neutral-light;
+                    }
+                }
+            }
+        }
+
+        .feature{
+
+            ul{
+
+                li{
+                    color: $color-neutral-light;
+                }
+            }
+        }
+    }
+}
+
+// ========== Home Section
+.home-section{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+
+    .background-image{
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+
+        &::after{
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            inset: 0;
+            background: $color-background;
+            opacity: .5;
+            z-index: 1;
+        }
+    }
+
+    .head-title{
+        font-size: 100px;
+        font-family: $head-font;
+        font-weight: 700;
+        text-transform: capitalize;
+        color: $color-background;
+    }
+
+    .subtitle{
+        font-size: 16px;
+        color: $color-surface;
+    }
+
+    .discover-btn{
+        font-size: 18px;
+        color: $color-background;
+        text-transform: capitalize;
+    }
+}
+
+// ========== Gallery Section
+.gallery-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: $color-surface;
+    gap: 50px;
+
+    .head-container{
+        text-align: center;
+        color: $color-neutral-light;
+
+        .head-title{
+            font-size: 40px;
+            font-weight: 800;
+            text-transform: capitalize;
+            font-family: $head-font;
+        }
+
+        .subtitle{
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+
+    .body-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        z-index: 1;
+
+        .gallery-item{
+            position: relative;
+            width: 100px;
+            height: 350px;
+            display: flex;
+            align-items: flex-end;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 500ms ease;
+
+            &.active{
+                width: 300px;
+                cursor: auto;
+
+                .like-button, .expand-img{
+                    display: flex;
+                    animation: zoom_bounce 1000ms ease;
+                    scale: (1);
+                }
+
+                .desc-pict{
+                    opacity: 1;
+
+                    p{
+                        opacity: 1;
+                        animation: zoom_bounce 1000ms ease;
+                        scale: (1);
+                    }
+                }
+            }
+
+            &.expanded{
+
+                .like-button, .expand-img, .desc-pict{
+                    opacity: 0;
+                }
+
+                .expand-img{
+
+                    i{
+
+                        &::after{
+                            content: '\f066';
+                        }
+                    }
+                }
+
+                &:hover{
+                    
+                    .like-button{
+                        pointer-events: none;
+                    }
+                    
+                    .expand-img{
+                        opacity: 1;
+
+                        i{
+                            color: $color-neutral-light;
+
+                            &::after{
+                                opacity: 1;
+                                color: $color-secondary;
+                            }
+                        }
+                    }
+                }
+            }
+
+            img{
+                position: absolute;
+                inset: 0;
+                z-index: -1;
+            }
+
+            .like-button, .expand-img{
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                backdrop-filter: blur(20px);
+                background: rgba(0,0,0,0.2);
+                border: 1px solid rgba(255,255,255,0.25);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                transition-delay: 200ms;
+                transition: all 600ms ease;
+
+                i{
+                    position: absolute;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 20px;
+                    color: $color-secondary;
+                    z-index: 1;
+                    cursor: pointer;
+
+                    &::after{
+                        position: absolute;
+                        font-size: 20px;
+                        transition: all 300ms ease;
+                    }
+                }
+            }
+
+            .like-button{
+                top: 10px;
+                right: 10px;
+
+                i{
+
+                    &::after{
+                        @include icon-requirements('\f004');
+                        opacity: 0;
+                    }
+
+                    &.liked{
+                        color: $color-primary;
+                        animation: zoom_bounce 500ms ease;
+
+                        &::after{
+                            opacity: 1;
+                            color: $color-primary;
+                        }
+                    }
+                }
+            }
+
+            .expand-img{
+                top: 70px;
+                right: 10px;
+
+                i{
+
+                    &::after{
+                        @include icon-requirements('\f065')
+                    }
+                }
+            }
+
+            .desc-pict{
+                width: 100%;
+                height: fit-content;
+                max-height: 210px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px;
+                border-radius: 5px;
+                backdrop-filter: blur(20px);
+                background: rgba(0,0,0,0.2);
+                border: 1px solid rgba(255,255,255,0.25);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                opacity: 0;
+                overflow: hidden;
+                transition-delay: 200ms;
+                z-index: -1;
+
+                p{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    opacity: 0;
+                    scale: (0);
+                    color: $color-neutral-light;
+                    @include words-limit(10);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1003px){
+
+    .gallery-section{
+
+        .body-container{
+            flex-direction: column;
+
+            .gallery-item{
+                width: 300px;
+                height: 100px;
+
+                &.active{
+                    height: 350px;
+                }
+            }
+        }
+    }
+}
