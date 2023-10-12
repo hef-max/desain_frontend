@@ -56,6 +56,9 @@
                     </button>
                     <a class="fp-password" href="">forgot password?</a>
                 </form>
+
+
+
                 <div class="account-confirmation">
                     <h5>Don't have an account?</h5>
                     <button onclick="toggleSwitcherForm()">
@@ -65,27 +68,41 @@
             </div>
             <div class="signup-box">
                 <h1 class="head-title">signup</h1>
-                <form action="" class="signup-form">
+
+                <form action="{{ url_for('register') }}" class="signup-form" method="post">
                     <div class="input-box">
                         <i class="fa-solid fa-user"></i>
-                        <input type="text" required="" class="input-bar" placeholder="username">
+                        <input type="text"  class="input-bar" id="username" placeholder="Username"  name="username" key="username" value="" onkeyup='checkusername();' required>
                     </div>
+                        <span id = "messageusername"> </span>
+
+
                     <div class="input-box">
                         <i class="fa-solid fa-at"></i>
-                        <input type="email" required="" class="input-bar" placeholder="email">
+                        <input type="email"  class="input-bar" id="email" placeholder="Email" name="email" value="" required>
+
                     </div>
+                        <span style="color:red;" id="msgerorregister">{{msgerorregister}} </span>
+                        <!-- <script>
+                            alert()
+                        </script> -->
+
                     <div class="input-box">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" required="" class="input-bar" placeholder="password">
+                        <input type="password"  class="input-bar" id="password" placeholder="Password"   name="password" key="password"  value=""  onkeyup='Checkpassword();' required >
                     </div>
-                    <div class="input-box">
+
+                    <span id ="messagepassword"> </span>
+
+                    <!-- <div class="input-box">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" required="" class="input-bar" placeholder="confirm password">
-                    </div>
-                    <button class="submit">
-                        sign up
-                    </button>
+                        <input type="password"  class="input-bar" id="newpassword" name="newpassword" placeholder="Confirm Password" key="newpassword" value=""  onkeyup='checkpassword();'   required>
+                    </div> -->
+                    
+                    <button type="submit" class="submit" id="btn1" value="submit" >Sign up</button>
                 </form>
+
+
                 <div class="account-confirmation">
                     <h5>Have an account?</h5>
                     <button onclick="toggleSwitcherForm()">
@@ -99,5 +116,85 @@
     <!-- Login Page End -->
     
 </body>
-<script src="./index.js"></script>
+
+<script src="{{url_for('static', filename='js/index.js')}}"></script>
+
+
+
+                            <!--Password Validation Start-->
+                            <script>
+                                var checkusername = function() {
+                                    // var regexusername=/^[0-9a-zA-Z]+$/;
+
+                                    if(!document.getElementById('username').value){
+                                        document.getElementById('messageusername').style.color = 'red';
+                                        document.getElementById('messageusername').innerHTML = 'Username masih kosong !';
+                                    }
+
+                                    // ERRROR
+                                    // else if (document.getElementById('username').value==regexusername) {
+                                    //     document.getElementById('messageusername').style.color = 'red';
+                                    //     document.getElementById('messageusername').innerHTML = 'Username hanya boleh menggunakan angka dan huruf abjad!';
+                                    // }
+
+                                    else if(document.getElementById('username').value){
+                                        document.getElementById('messageusername').style.color = '';
+                                        document.getElementById('messageusername').innerHTML = '';
+                                    }
+                                }
+
+    
+                                var Checkpassword = function() {
+                                    if (!document.getElementById('password').value) {
+                                        document.getElementById('messagepassword').style.color = 'red';
+                                        document.getElementById('messagepassword').innerHTML = 'Password masih kosong !';
+                                    }
+                                    else if (document.getElementById('password').value.length <8) {
+                                        document.getElementById('messagepassword').style.color = 'red';
+                                        document.getElementById('messagepassword').innerHTML = 'Password minimal 8 karakter !';
+                                    }
+
+                                    // else if (document.getElementById('password').value == document.getElementById('newpassword').value) {
+                                    //     document.getElementById('message').style.color = '';
+                                    //     document.getElementById('message').innerHTML = '';
+                                    // }
+
+                                    // else if(document.getElementById('password').value != document.getElementById('newpassword').value) {
+                                    //     document.getElementById('message').style.color = 'red';
+                                    //     document.getElementById('message').innerHTML = 'Password belum sama !';
+                                    // }
+    
+                            }
+    
+    </script>
+
+    <script>
+        function disablekotak() {
+            // False
+                                var usernamekosong= !document.getElementById('username').value;
+                                var password=!document.getElementById('password').value ;
+                                var password8=document.getElementById('password').value.length <8;
+                                var passwordcompare1=document.getElementById('password').value;
+                                var passwordcompare2=document.getElementById('newpassword').value;
+                                if( usernamekosong && usernameisi){
+                                  document.getElementById("btn1").disabled=true;
+                                }
+                                else if( usernamekosong ){
+                                  document.getElementById("btn1").disabled=true;
+                                }
+                                else if( password){
+                                  document.getElementById("btn1").disabled=true;
+                                }
+                                else if( password8){
+                                  document.getElementById("btn1").disabled=true;
+                                }
+                                else if( passwordcompare1!=passwordcompare2){
+                                  document.getElementById("btn1").disabled=true;
+                                }
+                                else{
+                                    document.getElementById("btn1").disabled=false;
+                                }
+                        }
+    </script>
+    <!--Password Validation End-->
 </html>
