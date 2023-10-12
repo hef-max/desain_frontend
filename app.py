@@ -31,9 +31,7 @@ def login():
             account = cursor.fetchone()
 
             if  email=='admin@admin.com' and password=='admin':
-                session['admin'] = 'admin'
-                session.permanent=True
-                app.permanent_session_lifetime=timedelta(minutes=30)
+                session.modified=True
                 return render_template('index.html')
             
             elif account:
@@ -47,14 +45,9 @@ def login():
             else:
                 msg = 'Terjadi kesalahan email atau Password !'
         return render_template('login.html', msg = msg)
-    except  :
-        return'404 Not found '
+    except Exception as e :
+        return e
         
-
-
-
-
-
 
 
 @app.route('/register', methods =['GET', 'POST'])
@@ -72,20 +65,20 @@ def register():
             if not e_mail:
                 cursor.execute('INSERT INTO username (username,password,email) VALUES (%s, %s, % s)', (username, password, email,))
                 mysql.connection.commit()
-                return render_template('index.html')
+                return 'Sucess'
+            
             elif e_mail:
-                msgeror='Email sudah ada yang menggunakan !'
-                return render_template('register.html',msgeror=msgeror)
+                msgerorregister='Email sudah ada yang menggunakan !'
+                return render_template('login.html',msgerorregister=msgerorregister)
+            
+            else:
+                return 'Something wrong'
 
-        return render_template('register.html')
+        return 'cant'
 
-    except :
-        return render_template('404.html')
-    finally:
-        try:
-            mysql.connect.close()
-        except:
-            return render_template('522.html')
+    except Exception as e :
+        return e
+
 
 
 
@@ -116,4 +109,6 @@ def keluar():
 
 
 if __name__ == "__main__":
-    app.run(debug=True,port=2727)
+    app.run(debug=True,port=3000)
+
+    
