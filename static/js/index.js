@@ -43,7 +43,7 @@ function pushGalleryItems(){
         let newDiv = document.createElement('div')
         newDiv.classList.add("gallery-item")
         newDiv.innerHTML = `
-        <img src="./images/${value.gallery_img}">
+        <img src="../images/${value.gallery_img}">
         <div class="like-button">
             <i class="fa-regular fa-heart" onclick="likeToggleBtn(event)"></i>
         </div>

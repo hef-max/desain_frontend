@@ -6,7 +6,7 @@
     <title>Login Page</title>
 
     <!-- CSS Link -->
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../static/css/style.css">
 
     <!-- CDNJS FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 <body>
+
 {% with messages = get_flashed_messages() %}
     {% if messages %}
       {% for message in messages %}
@@ -36,14 +37,14 @@
         <div class="login-container" id="login-container">
             <div class="login-box">
                 <h1 class="head-title">login</h1>
-                <form action="" class="login-form">
+                <form action="{{url_for('login')}}" class="login-form" method="POST">
                     <div class="input-box">
                         <i class="fa-solid fa-user"></i>
-                        <input type="text" required="" class="input-bar" placeholder="username">
+                        <input type="text" required="" class="input-bar" placeholder="username" name="username">
                     </div>
                     <div class="input-box">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" required="" class="input-bar" placeholder="password">
+                        <input type="password" required="" class="input-bar" placeholder="password" name="password">
                     </div>
                     <p style="color: red;">{{msg}}
                     <button class="submit">
@@ -63,17 +64,17 @@
             </div>
             <div class="signup-box">
                 <h1 class="head-title">signup</h1>
-                <form action="" class="signup-form">
+                <form action="{{url_for('register')}}" class="signup-form" method="POST">
                     <div class="input-box">
                         <i class="fa-solid fa-user"></i>
-                        <input type="text" required="" class="input-bar" placeholder="username">
+                        <input type="text" required="" class="input-bar" placeholder="username" name="username">
                     </div>
                         <span id = "messageusername"> </span>
 
 
                     <div class="input-box">
                         <i class="fa-solid fa-at"></i>
-                        <input type="email" required="" class="input-bar" placeholder="email">
+                        <input type="email" required="" class="input-bar" placeholder="email" name="email">
                     </div>
                         <span style="color:red;" id="msgerorregister">{{msgerorregister}} </span>
                         <!-- <script>
@@ -82,7 +83,7 @@
 
                     <div class="input-box">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" required="" class="input-bar" placeholder="password">
+                        <input type="password" required="" class="input-bar" placeholder="password" name="password">
                     </div>
 
                     <span id ="messagepassword"> </span>
@@ -107,8 +108,8 @@
         </div>
     </section>
 
-    <!-- Login Page End -->
+     Login Page End -->
 
 </body>
-<script src="./index.js"></script>
+<script src="../static/js/index.js"></script>
 </html>
