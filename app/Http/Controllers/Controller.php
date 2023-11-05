@@ -53,16 +53,15 @@ class Controller{
         $username = $request->input('username');
         $password = $request->input('password');
 
-        $check_if_username_exist="SELECT username FROM users WHERE username='$username'";
-            if ($check_if_username_exist){
-                return redirect('login')->with("message_duplikat_username","Username sudah ada yang menggunakan");
-            }
-            
-            else {
-                $sql_register_query = "INSERT INTO users VALUES ('$username', '$email', '$password')";
-                $users = DB::insert($sql_register_query);
-                return redirect('login');
-            }          
+        // $check_if_username_exist="SELECT username FROM users WHERE username='$username'";
+            // if ($check_if_username_exist){
+            //     return view('login')->with("message_duplikat_username","Username sudah ada yang menggunakan");
+            // }
+
+        $sql_register_query = "INSERT INTO users VALUES ('$username', '$email', '$password')";
+        $users = DB::insert($sql_register_query);
+        return view('login');
+                    
     }
 
 
