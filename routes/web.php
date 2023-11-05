@@ -22,10 +22,6 @@ Route::get('/login', function() {
 );
 
 
-Route::get('/session/makesession', [Controller::class, 'buatSession'])->name('MakeSession');
-
-
-
 
 //register
 Route::post('/register', [Controller::class, 'register_auth'])->name('register');

@@ -8,6 +8,16 @@ use DB;
 
 class Controller{
 
+
+    public function index(){
+        if (session()->has('username')) {
+            return redirect()->route('dashboard');
+        }
+        return view('index');
+    }
+
+
+
     public function login_view(){
         if (session()->has('username')) {
             return redirect()->route('dashboard');
@@ -42,14 +52,18 @@ class Controller{
         $email = $request->input('email');
         $username = $request->input('username');
         $password = $request->input('password');
-        
-        $sql_register_query = "INSERT INTO users VALUES ('$email', '$username', '$password')";
-        $users = DB::insert($sql_register_query);
-        return redirect('login');
-          
+
+        $check_if_username_exist="SELECT username FROM users WHERE username='$username'";
+            if ($check_if_username_exist){
+                return redirect('login')->with("message_duplikat_username","Username sudah ada yang menggunakan");
+            }
+            
+            else {
+                $sql_register_query = "INSERT INTO users VALUES ('$username', '$email', '$password')";
+                $users = DB::insert($sql_register_query);
+                return redirect('login');
+            }          
     }
-    
-    
 
 
 
@@ -62,9 +76,6 @@ class Controller{
         return redirect()->route('login');
     }
 
-    public function index(){
-        return view('index');
-    }
 
 
    public function logout(){

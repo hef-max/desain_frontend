@@ -18,8 +18,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 <body>
-    <!-- Login Page Start -->
 
+
+    <!-- Login Page Start -->
     <section class="login-page">
         <div class="login-container" id="login-container">
             <div class="login-box">
@@ -71,7 +72,7 @@
                     </div>
                     <div class="input-box">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" required="" class="input-bar" placeholder="confirm password">
+                        <input type="password" required="" class="input-bar" placeholder="confirm password" name="confirm_password">
                     </div>
                     <button class="submit">
                         sign up
