@@ -68,6 +68,9 @@
                         <img src="../images/image-1.jpg" alt="">
                     </div>
                     <h3>
+
+           
+
                         good day, <span class="username-profile">{{ session('username') }}</span>
                     </h3>
                 </div>
@@ -130,112 +133,63 @@
                         <h3>orders</h3>
                     </div>
                     <div class="body-content">
+
+                    @foreach($data2 as $dataorders)
                         <div class="orders-box">
                             <div class="orders-profile">
                                 <div class="box-icon">
                                     <i class="fa-solid fa-bullseye"></i>
                                 </div>
                                 <div class="orders-desc">
-                                    <div class="orders-name">wedding package</div>
-                                    <div class="date">March 34, 2023 at 08:30 pm</div>
+                                    <div class="orders-name">{{$dataorders['nama_order'] }}</div>
+                                    <div class="date">{{$dataorders['tanggal_order']}}  </div>
+                                    {{$dataorders['jam_order']}}
                                 </div>
                             </div>
                             <div class="orders-price">
-                                Rp. 5.000.000
+                                {{$dataorders['harga_order']}}
                             </div>
-                            <div class="orders-status pending">
-                                pending
+
+                            <!-- Script untuk mewarnai per status order -->
+                            @php
+
+                                if ($dataorders['status_order']=="sucess") {
+                                    $color = "green";
+                                }
+                                
+                                elseif ($dataorders['status_order'] =="pending") {
+                                        $color = "yellow";
+                                }
+                                
+                                else{
+                                    $color = "red";
+                            }
+
+                            @endphp
+
+                            <div class="orders-color" style="color:{{$color}}">
+                                {{$dataorders['status_order']}}
                             </div>
+
+
+
                             <div class="orders-menu">
                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                             </div>
                         </div>
-                        <div class="orders-box">
-                            <div class="orders-profile">
-                                <div class="box-icon">
-                                    <i class="fa-solid fa-bullseye"></i>
-                                </div>
-                                <div class="orders-desc">
-                                    <div class="orders-name">pre-wedding photographer</div>
-                                    <div class="date">March 34, 2023 at 08:30 pm</div>
-                                </div>
-                            </div>
-                            <div class="orders-price">
-                                Rp. 5.000.000
-                            </div>
-                            <div class="orders-status success">
-                                success
-                            </div>
-                            <div class="orders-menu">
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </div>
-                        </div>
-                        <div class="orders-box">
-                            <div class="orders-profile">
-                                <div class="box-icon">
-                                    <i class="fa-solid fa-bullseye"></i>
-                                </div>
-                                <div class="orders-desc">
-                                    <div class="orders-name">wedding invitation</div>
-                                    <div class="date">March 34, 2023 at 08:30 pm</div>
-                                </div>
-                            </div>
-                            <div class="orders-price">
-                                Rp. 5.000.000
-                            </div>
-                            <div class="orders-status error">
-                                cancel
-                            </div>
-                            <div class="orders-menu">
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </div>
-                        </div>
-                        <div class="orders-box">
-                            <div class="orders-profile">
-                                <div class="box-icon">
-                                    <i class="fa-solid fa-bullseye"></i>
-                                </div>
-                                <div class="orders-desc">
-                                    <div class="orders-name">catering</div>
-                                    <div class="date">March 34, 2023 at 08:30 pm</div>
-                                </div>
-                            </div>
-                            <div class="orders-price">
-                                Rp. 5.000.000
-                            </div>
-                            <div class="orders-status pending">
-                                pending
-                            </div>
-                            <div class="orders-menu">
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </div>
-                        </div>
-                        <div class="orders-box">
-                            <div class="orders-profile">
-                                <div class="box-icon">
-                                    <i class="fa-solid fa-bullseye"></i>
-                                </div>
-                                <div class="orders-desc">
-                                    <div class="orders-name">wedding package</div>
-                                    <div class="date">March 34, 2023 at 08:30 pm</div>
-                                </div>
-                            </div>
-                            <div class="orders-price">
-                                Rp. 5.000.000
-                            </div>
-                            <div class="orders-status error">
-                                cancel
-                            </div>
-                            <div class="orders-menu">
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                            </div>
-                        </div>
+                        @endforeach
+                        
                     </div>
                 </div>
+
+
+
+               
                 <div class="employees-container">
                     <div class="head-content">
                         <h3>employees status</h3>
                     </div>
+                    @foreach($data as $dataemployee)
                     <div class="body-content">
                         <div class="employee-box">
                             <div class="ava-profile">
@@ -243,137 +197,19 @@
                             </div>
                             <div class="employee-profile">
                                 <div class="profile-name">
-                                    gelco
+                                {{ $dataemployee['name'] }}
                                 </div>
                                 <div class="profile-job">
-                                    admin
+                                {{ $dataemployee['role'] }}
                                 </div>
                             </div>
                             <div class="employee-status">
                                 <i></i>
                                 offline
-                            </div>
-                        </div>
-                        <div class="employee-box">
-                            <div class="ava-profile">
-                                <img src="../images/image-1.jpg" alt="">
-                            </div>
-                            <div class="employee-profile">
-                                <div class="profile-name">
-                                    gelco
-                                </div>
-                                <div class="profile-job">
-                                    admin
-                                </div>
-                            </div>
-                            <div class="employee-status active">
-                                <i></i>
-                                online
-                            </div>
-                        </div>
-                        <div class="employee-box">
-                            <div class="ava-profile">
-                                <img src="../images/image-1.jpg" alt="">
-                            </div>
-                            <div class="employee-profile">
-                                <div class="profile-name">
-                                    gelco
-                                </div>
-                                <div class="profile-job">
-                                    admin
-                                </div>
-                            </div>
-                            <div class="employee-status">
-                                <i></i>
-                                offline
-                            </div>
-                        </div>
-                        <div class="employee-box">
-                            <div class="ava-profile">
-                                <img src="../images/image-1.jpg" alt="">
-                            </div>
-                            <div class="employee-profile">
-                                <div class="profile-name">
-                                    gelco
-                                </div>
-                                <div class="profile-job">
-                                    admin
-                                </div>
-                            </div>
-                            <div class="employee-status active">
-                                <i></i>
-                                online
-                            </div>
-                        </div>
-                        <div class="employee-box">
-                            <div class="ava-profile">
-                                <img src="../images/image-1.jpg" alt="">
-                            </div>
-                            <div class="employee-profile">
-                                <div class="profile-name">
-                                    gelco
-                                </div>
-                                <div class="profile-job">
-                                    admin
-                                </div>
-                            </div>
-                            <div class="employee-status">
-                                <i></i>
-                                offline
-                            </div>
-                        </div>
-                        <div class="employee-box">
-                            <div class="ava-profile">
-                                <img src="../images/image-1.jpg" alt="">
-                            </div>
-                            <div class="employee-profile">
-                                <div class="profile-name">
-                                    gelco
-                                </div>
-                                <div class="profile-job">
-                                    admin
-                                </div>
-                            </div>
-                            <div class="employee-status active">
-                                <i></i>
-                                online
-                            </div>
-                        </div>
-                        <div class="employee-box">
-                            <div class="ava-profile">
-                                <img src="../images/image-1.jpg" alt="">
-                            </div>
-                            <div class="employee-profile">
-                                <div class="profile-name">
-                                    gelco
-                                </div>
-                                <div class="profile-job">
-                                    admin
-                                </div>
-                            </div>
-                            <div class="employee-status">
-                                <i></i>
-                                offline
-                            </div>
-                        </div>
-                        <div class="employee-box">
-                            <div class="ava-profile">
-                                <img src="../images/image-1.jpg" alt="">
-                            </div>
-                            <div class="employee-profile">
-                                <div class="profile-name">
-                                    gelco
-                                </div>
-                                <div class="profile-job">
-                                    admin
-                                </div>
-                            </div>
-                            <div class="employee-status active">
-                                <i></i>
-                                online
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -385,3 +221,12 @@
 </body>
 <script type="text/javascript" src="{{ asset('js/index.js') }}"></script>
 </html>
+
+<!-- Ganti Warna untuk status pesanan -->
+
+
+
+
+
+
+

@@ -1,16 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use DB;
-
+use Illuminate\Support\Facades\Http;
 
 class Controller{
-
-
     public function index(){
         if (session()->has('username')) {
+            
             return redirect()->route('dashboard');
         }
         return view('index');
@@ -43,9 +41,9 @@ class Controller{
     }
 
 
-    public function register(){
-        return view('register');
-    }
+    // public function register(){
+    //     return view('register');
+    // }
 
 
     public function register_auth(Request $request){
@@ -67,10 +65,20 @@ class Controller{
 
 
 
+
+
+
     public function dashboard() {
 
         if (session()->has('username')) {
-            return view('dashboard');
+            $getdataemployee = 'https://designfrontend158163178.pythonanywhere.com/getdataemployee';
+            // Make a GET request to the API
+            $response = Http::get($getdataemployee );
+
+            // for orders
+            $getdataorders='https://designfrontend158163178.pythonanywhere.com/getdataorders';
+            $response2 = Http::get($getdataorders );
+            return view('dashboard')->with('data', json_decode($response, true))->with('data2', json_decode($response2, true));
         }
         return redirect()->route('login');
     }
@@ -82,4 +90,19 @@ class Controller{
         return redirect()->route('login');
    }
 
+
+
+
+
+
+   public function contactdata(){
+    $getdataemployee = 'https://designfrontend158163178.pythonanywhere.com/getdataemployee';
+    // Make a GET request to the API
+    $response = Http::get($getdataemployee );
+    $data = $response->json();
+    return $data;
+    }
+
 }
+
+

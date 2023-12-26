@@ -33,3 +33,10 @@ Route::get('/dashboard', [Controller::class, 'dashboard'])->name('dashboard');
 
 // logout
 Route::get('/logout', [Controller::class, 'logout'])->name('logout');
+
+// tes_DATA
+
+Route::get('/contactdata', [Controller::class, 'contactdata'])->name('contactdata');
+
+
+
